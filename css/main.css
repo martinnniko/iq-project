@@ -1,1 +1,110 @@
-/*# sourceMappingURL=main.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+button,
+input {
+  background: none;
+  border: none;
+}
+button:focus, button:active,
+input:focus,
+input:active {
+  outline: none;
+  box-shadow: none;
+}
+
+a {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url(../fonts/PlayfairDisplay-Regular.woff2);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SourceSans";
+  src: url(../fonts/SourceSans3-Regular.woff2);
+  font-weight: 400;
+}
+header {
+  background-color: #ffffff;
+  z-index: 20;
+  border-bottom: 3px solid #089D93;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+header #logo {
+  margin-left: 110px;
+  margin-right: 110px;
+}
+header .nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 110px;
+}
+header span {
+  font-size: 22px;
+  color: #000000;
+  font-family: "SourceSans";
+  position: relative;
+  display: block;
+}
+
+.main-padding {
+  padding: 0 60px;
+}
+@media (max-width: 1023.98px) {
+  .main-padding {
+    padding: 0 30px;
+  }
+}
+@media (max-width: 559.98px) {
+  .main-padding {
+    padding: 0 16px;
+  }
+}
+
+.page-section {
+  display: none;
+}
+.page-section.js-page-section {
+  display: block;
+}
+
+#home {
+  background-color: #E8E8E8;
+}
+
+#about {
+  background-color: #000000;
+}
+
+#programs {
+  background-color: #089D93;
+}
+
+#instructors {
+  background-color: #089D93;
+}
+
+#contact {
+  background-color: #737373;
+}
+
+#blog {
+  background-color: #62A1A4;
+}/*# sourceMappingURL=main.css.map */

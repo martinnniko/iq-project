@@ -1,0 +1,69 @@
+@import "mixins";
+@import "reset";
+@import "fonts&variables";
+
+header{
+    background-color: $color-white;
+    z-index: 20;
+    border-bottom: 3px solid $color-dark-cyan;
+    @include flexbox(
+    $alignItems:center,
+    $justifyContent:center
+    );
+    #logo{
+        margin-left: 110px;
+        margin-right: 110px;
+    }
+ .nav {
+    @include flexbox($alignItems: center);
+    gap: 110px;
+
+}
+span {
+        font-size: 22px;
+        color: $color-black;
+        font-family: $font-SourceSans;
+        position: relative;
+        display: block;
+}
+}
+
+.main-padding {
+  padding: 0 60px;
+  @include media-down(l) {
+    padding: 0 30px;
+  }
+
+  @include media-down(s) {
+    padding: 0 16px;
+  }
+}
+.page-section {
+  display: none;
+
+  &.js-page-section {
+    display: block;
+  }
+}
+
+
+#home{
+    background-color: $color-light-grey;
+}
+
+#about{
+background-color: $color-black;
+}
+  
+#programs{
+    background-color: $color-dark-cyan;
+}
+#instructors{
+background-color: $color-dark-cyan;
+}
+#contact{
+background-color: $color-dark-grey;
+}
+#blog{
+background-color: $color-light-cyan;
+}
