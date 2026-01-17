@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url(../fonts/PlayfairDisplay-Regular.woff2);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SourceSans";
+  src: url(../fonts/SourceSans3-Regular.woff2);
+  font-weight: 400;
+}
+
+//Fonts
+$font-PlayfairDisplay: "PlayfairDisplay";
+$font-SourceSans: "SourceSans";
+
+//Breakpoints
+$grid-breakpoints:(
+    "xs":420px,
+    "s":560px,
+    "m":768px,
+    "l":1024px,
+    "xl":1200px
+);
+
+//Colors
+$color-black:#000000;
+$color-dark-grey: #737373;
+$color-light-grey: #E8E8E8;
+$color-white: #ffffff;
+$color-light-cyan: #62A1A4;
+$color-dark-cyan: #089D93;
