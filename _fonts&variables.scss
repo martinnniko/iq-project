@@ -9,10 +9,28 @@
   src: url(../fonts/SourceSans3-Regular.woff2);
   font-weight: 400;
 }
+@font-face {
+  font-family: "SourceSansProL";
+  src: url(../fonts/SourceSansPro-Light.woff2);
+  font-weight: 300;
+}
+  @font-face {
+  font-family: "SourceSansProR";
+  src: url(../fonts/PlayfairDisplay-Regular.woff2);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Domine";
+  src: url(../fonts/Domine-Regular.woff2);
+  font-weight: 400;
+}
 
 //Fonts
 $font-PlayfairDisplay: "PlayfairDisplay";
 $font-SourceSans: "SourceSans";
+$font-SourceSansProR: "SourceSansProR";
+$font-SourceSansProL: "SourceSansProL";
+$font-Domine: "Domine";
 
 //Breakpoints
 $grid-breakpoints:(
