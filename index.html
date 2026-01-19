@@ -5,49 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IQ Online Academy</title>
     <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" href="img/flaticon.ico">
+    <link rel="icon" href="img/flaticon.ico">
 </head>
 <body>
     <header class="main-padding">
-       
         <nav class="nav">
-      <a href="/" class="nav-item active">
-        <span>Home</span>
-      </a>
-      <a href="#" class="nav-item">
-        <span>About</span>
-      </a>
-      <a href="#" class="nav-item">
-        <span>Programs</span>
-      </a>
-       <a href="/" id="logo">
-            <img src="img/logo.png" alt="logo" height="77" width="113">
-        </a>
-      <a href="#" class="nav-item">
-        <span>Instructors</span>
-      </a>
-      <a href="#" class="nav-item">
-        <span>Contact</span>
-      </a>
-      <a href="#" class="nav-item">
-        <span>Blog</span>
-      </a>
-        </nav>
+            <div class="nav-left">
+                <a href="#" class="nav-item active"><span>Home</span></a>
+                <a href="#" class="nav-item"><span>About</span></a>
+                <a href="#" class="nav-item"><span>Programs</span></a>
+            </div>
 
+            <a href="/" id="logo">
+                <img src="img/logo.png" alt="logo" height="77" width="113">
+            </a>
+
+            <div class="nav-right">
+                <a href="#" class="nav-item"><span>Instructors</span></a>
+                <a href="#" class="nav-item"><span>Contact</span></a>
+                <a href="#" class="nav-item"><span>Blog</span></a>
+            </div>
+        </nav>
     </header>
+
     <main>
-    <section id="home" class="page-section js-page-section">
-        <div class="hero-shot main-padding">
-<p>Home Section</p>
+        <section id="home" class="page-section js-page-section">
+            <div class="hero-container main-padding">
+                <div class="hero-visual">
+                    <div class="hero-shot">
+                        <img src="img/hero-shot.png" alt="IQ Online Academy" height="350" width="560">
+                    </div>
+                </div>
+
+                <div class="hero-content">
+                    <h4 class="hero-overline">OUR MISSION: EXCELLENCE IN EDUCATION</h4>
+                    <h1 class="hero-title">IQ Online Academy</h1>
+                    <p class="hero-description">
+                        We provide globally recognized certification, expert mentorship, and practical training to prepare professionals for success in today’s evolving digital and creative industries.
+                    </p>
+                    <a href="#" class="btn-enroll">Enroll Now</a>
+                </div>
+            </div>
+
+            <section class="newsletter main-padding">
+                <div class="newsletter-container">
+                    <h1 class="news-title">Never Miss an Opportunity to Learn and Grow</h1>
+                    <p class="news-description">Subscribe to our mailing list and be the first to hear about new programs, enrollment deadlines, exclusive learning resources, and career opportunities from the International Online Learning Academy</p>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Enter your email ..." class="subscribe-input">
+                        <button type="submit" class="btn-subscribe">Subscribe</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="programs-home" class="programs-section main-padding">
+                <h2 class="section-title">Explore Our Programs</h2>
+                <p class="section-subtitle">Explore accredited courses designed to equip you with practical skills, global certification, and real career opportunities.</p>
+                <div class="slider-controls-container">
+                    <button class="slider-arrow prev" id="prevBtn" aria-label="Previous">
+                        <img src="img/arrow-left.png" alt="Previous">
+                    </button>
+                    <div class="programs-wrapper"> 
+                        <div class="programs-container" id="programTrack">
+                            <div class="program-card">
+                                <div class="card-image"><img src="img/programs/digital-marketing.jpg" alt="Marketing" height="330" width="330"></div>
+                                <h3 class="card-title">Digital Marketing Academy</h3>
+                                <p class="card-text">Learn the strategies and tools that drive modern businesses online with hands-on projects.</p>
+                                <a href="#" class="btn-learn">Learn More</a>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="card-image"><img src="img/programs/graphic-design.jpg" alt="Graphic" height="330" width="330"></div>
+                                <h3 class="card-title">Graphic Design Academy</h3>
+                                <p class="card-text">Develop creative and technical skills using industry tools to build a professional portfolio.</p>
+                                <a href="#" class="btn-learn">Learn More</a>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="card-image"><img src="img/programs/ui-ux.jpg" alt="UXUI" height="330" width="330"></div>
+                                <h3 class="card-title">UX/UI Academy</h3>
+                                <p class="card-text">Learn how to design user-friendly digital experiences through research and prototyping.</p>
+                                <a href="#" class="btn-learn">Learn More</a>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="card-image"><img src="img/programs/motion-graphics.jpg" alt="Motion" height="330" width="330"></div>
+                                <h3 class="card-title">Motion Graphics Academy</h3>
+                                <p class="card-text">Master the art of visual storytelling through animation, design, and motion techniques that bring ideas to life.</p>
+                                <a href="#" class="btn-learn">Learn More</a>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="card-image"><img src="img/programs/interior-design.jpg" alt="Interior" height="330" width="330"></div>
+                                <h3 class="card-title">Interior Design Academy</h3>
+                                <p class="card-text">Learn how to create functional, stylish, and inspiring spaces with practical design skills and professional guidance.</p>
+                                <a href="#" class="btn-learn">Learn More</a>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="card-image"><img src="img/programs/front-end.jpg" alt="Frontend" height="330" width="330"></div>
+                                <h3 class="card-title">Front End Academy</h3>
+                                <p class="card-text">Build modern, responsive, and user-friendly websites by developing hands-on coding and design expertise.</p>
+                                <a href="#" class="btn-learn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrow next" id="nextBtn" aria-label="Next">
+                        <img src="img/arrow-right.png" alt="Next">
+                    </button>
+                </div>
+            </section>
+            <section id="testimonials-home" class="testimonial-section main-padding">
+    <h2 class="section-title">Student Testimonial</h2>
+    
+    <div class="testimonial-slider-container">
+        <button class="slider-arrow prev" id="testimonialPrev">
+            <img src="img/arrow-left.png" alt="Previous">
+        </button>
+
+        <div class="testimonial-wrapper">
+            <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-slide">
+                    <div class="student-photo">
+                        <img src="img/sara-student.jpg" alt="Sara Stevoska" height="148" width="148">
+                    </div>
+                    <blockquote class="testimonial-text">
+                        "The Graphic Design Academy created an environment where I could push my creativity while also mastering the tools and principles every designer needs."
+                    </blockquote>
+                    <cite class="student-name">Sara Stevoska</cite>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="student-photo">
+                        <img src="img/martinco.jpg" alt="martinco" height="148" width="148">
+                    </div>
+                    <blockquote class="testimonial-text">
+                        "This project made me lose my mind!"
+                    </blockquote>
+                    <cite class="student-name">Macko</cite>
+                </div>
+            </div>
         </div>
-    </section>
-    <section id="about" class="page-section">About</section>
-    <section id="programs" class="page-section">Programs</section>
-    <section id="instructors" class="page-section">Instructors</section>
-    <section id="contact" class="page-section">Contact</section>
-    <section id="blog" class="page-section">Blog</section>
+
+        <button class="slider-arrow next" id="testimonialNext">
+            <img src="img/arrow-right.png" alt="Next">
+        </button>
+    </div>
+</section>
+        </section>
+
+        <section id="about" class="page-section">About</section>
+        <section id="programs" class="page-section">Programs</section>
+        <section id="instructors" class="page-section">Instructors</section>
+        <section id="contact" class="page-section">Contact</section>
+        <section id="blog" class="page-section">Blog</section>
     </main>
-    <footer></footer>
+
     <script src="main.js"></script>
 </body>
 </html>

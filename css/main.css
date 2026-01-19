@@ -35,33 +35,65 @@ a:visited {
   src: url(../fonts/SourceSans3-Regular.woff2);
   font-weight: 400;
 }
+@font-face {
+  font-family: "SourceSansProL";
+  src: url(../fonts/SourceSansPro-Light.woff2);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "SourceSansProR";
+  src: url(../fonts/PlayfairDisplay-Regular.woff2);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Domine";
+  src: url(../fonts/Domine-Regular.woff2);
+  font-weight: 400;
+}
 header {
   background-color: #ffffff;
-  z-index: 20;
   border-bottom: 3px solid #089D93;
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
 }
-header #logo {
-  margin-left: 110px;
-  margin-right: 110px;
-}
 header .nav {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+header .nav .nav-left, header .nav .nav-right {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 110px;
+  gap: 60px;
+  flex: 1;
+}
+header .nav .nav-left {
+  justify-content: flex-start;
+}
+header .nav .nav-right {
+  justify-content: flex-end;
+}
+header #logo {
+  margin: 0 50px;
 }
 header span {
   font-size: 22px;
   color: #000000;
   font-family: "SourceSans";
-  position: relative;
-  display: block;
+  transition: color 0.2s ease-in-out;
+}
+header span:hover {
+  color: #089D93;
 }
 
 .main-padding {
@@ -85,8 +117,304 @@ header span {
   display: block;
 }
 
-#home {
-  background-color: #E8E8E8;
+#home .hero-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 767.98px) {
+  #home .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+#home .hero-visual {
+  flex: 1;
+}
+#home .hero-visual .hero-shot {
+  height: 350px;
+  width: 560px;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+#home .hero-visual .hero-shot img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+#home .hero-content {
+  flex: 1;
+}
+#home .hero-content .hero-overline {
+  font-family: "SourceSans";
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #000000;
+  margin-bottom: 35px;
+}
+#home .hero-content .hero-title {
+  font-family: "PlayfairDisplay";
+  font-size: 36px;
+  color: #000000;
+  margin-bottom: 37px;
+}
+#home .hero-content .hero-description {
+  font-family: "SourceSansProL";
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 25px;
+  max-width: 600px;
+}
+#home .btn-enroll {
+  display: inline-block;
+  background-color: #62A1A4;
+  color: #ffffff;
+  padding: 11px 45.5px;
+  font-family: "Domine";
+  font-weight: 400;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  margin-top: 18px;
+}
+#home .btn-enroll:hover {
+  background-color: #089D93;
+}
+#home .newsletter {
+  background-color: #F8F8F8;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+#home .newsletter .newsletter-container {
+  max-width: 1100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+}
+#home .newsletter .news-title {
+  font-family: "PlayfairDisplay";
+  font-size: 36px;
+  color: #000000;
+  margin-bottom: 30px;
+}
+#home .newsletter .news-description {
+  font-family: "SourceSansProL";
+  font-size: 24px;
+  color: #000000;
+  max-width: 1100px;
+  margin-bottom: 20px;
+}
+#home .subscribe-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+  width: 100%;
+}
+#home .subscribe-form .subscribe-input {
+  width: 350px;
+  height: 42px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-family: "SourceSansProR";
+  margin-top: 18px;
+}
+#home .subscribe-form .subscribe-input::-moz-placeholder {
+  color: #089D93;
+}
+#home .subscribe-form .subscribe-input::placeholder {
+  color: #089D93;
+}
+#home .subscribe-form .btn-subscribe {
+  display: inline-block;
+  background-color: #62A1A4;
+  color: #ffffff;
+  padding: 11px 45.5px;
+  font-family: "Domine";
+  font-weight: 400;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  margin-top: 18px;
+  cursor: pointer;
+}
+#home .subscribe-form .btn-subscribe:hover {
+  background-color: #089D93;
+}
+#home .programs-section {
+  text-align: center;
+  padding: 40px 0;
+}
+#home .programs-section .section-title {
+  font-size: 36px;
+  font-family: "PlayfairDisplay";
+  margin-bottom: 40px;
+}
+#home .programs-section .section-subtitle {
+  font-size: 24px;
+  font-family: "SourceSansProR";
+  margin-bottom: 30px;
+}
+#home .programs-section .slider-controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+#home .programs-section .programs-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 20px;
+}
+#home .programs-section .programs-container {
+  display: flex;
+  gap: 60px;
+  transition: transform 0.5s ease-in-out;
+  width: -moz-max-content;
+  width: max-content;
+}
+#home .programs-section .program-card {
+  flex: 0 0 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+#home .programs-section .program-card .card-image img {
+  width: 330px;
+  height: 330px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+}
+#home .programs-section .program-card .card-title {
+  font-size: 24px;
+  margin: 15px 0;
+  font-family: "SourceSansProR";
+}
+#home .programs-section .program-card .card-text {
+  font-size: 18px;
+  color: #000000;
+  font-family: "SourceSansProL";
+  margin-bottom: 35px;
+}
+#home .programs-section .program-card .btn-learn {
+  background-color: #62A1A4;
+  color: #ffffff;
+  padding: 10px 40px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: "Domine";
+}
+#home .programs-section .slider-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+#home .programs-section .slider-arrow img {
+  width: 30px;
+}
+#home .programs-section .slider-arrow:disabled {
+  opacity: 0.2;
+}
+#home .testimonial-section {
+  padding: 80px 0;
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 3px solid #62A1A4;
+  border-bottom: 3px solid #62A1A4;
+}
+#home .testimonial-section .section-title {
+  font-family: "PlayfairDisplay";
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+#home .testimonial-slider-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+#home .testimonial-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+#home .testimonial-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+#home .testimonial-slide {
+  flex: 0 0 100%;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+#home .testimonial-slide .student-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #6da7a9;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+#home .testimonial-slide .student-photo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#home .testimonial-slide .testimonial-text {
+  font-family: "SourceSans";
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 25px;
+  max-width: 700px;
+}
+#home .testimonial-slide .student-name {
+  font-family: "SourceSans";
+  font-weight: 600;
+  font-size: 18px;
+  font-style: normal;
+  color: #000;
+}
+#home .slider-arrow {
+  cursor: pointer;
 }
 
 #about {
