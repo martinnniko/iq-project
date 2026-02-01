@@ -1,32 +1,96 @@
+@import "fonts&variables";
 @import "mixins";
 @import "reset";
-@import "fonts&variables";
 
+// --- HEADER ---
 header {
   background-color: $color-white;
   border-bottom: 3px solid $color-dark-cyan;
   height: 100px;
+  position: relative; // Context for absolute items
+  z-index: 1000;
   @include flexbox($alignItems: center, $justifyContent: center);
 
   .nav {
     width: 100%;
     max-width: 1200px;
+    height: 100%;
     @include flexbox($alignItems: center, $justifyContent: space-between);
+  }
 
-    .nav-left,
-    .nav-right {
-      @include flexbox($alignItems: center);
-      gap: 60px;
-      flex: 1;
+  // --- BURGER BUTTON (FIXED POSITION) ---
+  .burger-btn {
+    display: none; // Hidden on desktop
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+
+    // ABSOLUTE POSITIONING FIX
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1002;
+
+    .burger-icon {
+      display: block;
+      width: 30px;
+      height: 2px;
+      background-color: $color-black;
+      position: relative;
+      transition: background-color 0.3s;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: $color-black;
+        left: 0;
+        transition: all 0.3s;
+      }
+
+      &::before {
+        top: -8px;
+      }
+
+      &::after {
+        top: 8px;
+      }
     }
 
-    .nav-left {
-      justify-content: flex-start;
-    }
+    // Active State (X shape)
+    &.active .burger-icon {
+      background-color: transparent;
 
-    .nav-right {
-      justify-content: flex-end;
+      &::before {
+        transform: rotate(45deg);
+        top: 0;
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+        top: 0;
+      }
     }
+  }
+
+  
+  .nav-left,
+  .nav-right {
+    @include flexbox($alignItems: center);
+    gap: 60px;
+    flex: 1;
+  }
+
+  .nav-left {
+    justify-content: flex-start;
+  }
+
+  .nav-right {
+    justify-content: flex-end;
   }
 
   #logo {
@@ -40,44 +104,103 @@ header {
     text-decoration: none;
     position: relative;
     z-index: 1;
-    text-shadow:
-      3px 0 $color-white,
-      -3px 0 $color-white,
-      0 3px $color-white,
-      0 -3px $color-white,
-      1px 1px $color-white,
-      -1px -1px $color-white,
-      1px -1px $color-white,
-      -1px 1px $color-white;
+    text-shadow: 3px 0 $color-white, -3px 0 $color-white, 0 3px $color-white, 0 -3px $color-white;
 
     &::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: 4px;
       width: 100%;
       height: 2px;
       background-color: $color-dark-cyan;
-      bottom: 4px;
       z-index: -1;
       transform: scaleX(0);
       transform-origin: center;
       transition: transform 0.3s ease-in-out;
-
     }
 
-    &:hover {
-      &::after {
-        transform: scaleX(1);
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  // --- responsive ---
+  @include media-down(m) {
+    height: 80px;
+
+    .nav {
+      justify-content: center; // Center logo
+
+      #logo {
+        margin: 0;
+
+        img {
+          height: 50px;
+          width: auto;
+        }
+      }
+
+      .burger-btn {
+        display: block;
+      }
+
+      
+      .nav-left,
+      .nav-right {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        background-color: $color-white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        padding: 20px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s ease-in-out;
+        z-index: 1001;
+        top: 80px;
+
+        
+        .nav-item {
+          padding: 15px 0;
+          width: 100%;
+          text-align: center;
+          border-bottom: 1px solid #f0f0f0;
+        }
+      }
+
+      .nav-right {
+        border-top: 1px solid #f0f0f0;
+      }
+    }
+
+  
+    &.nav-open {
+
+      .nav-left,
+      .nav-right {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        position: fixed;
+      }
+
+      // Stack logic
+      .nav-left {
+        top: 80px;
+      }
+
+      .nav-right {
+        top: 290px;
+        border-bottom: 3px solid $color-dark-cyan;
       }
     }
   }
-
-  &::after {
-    transform: scaleX(1);
-  }
 }
-
 
 .main-padding {
   padding: 0 60px;
@@ -91,15 +214,6 @@ header {
   }
 }
 
-.page-section {
-  display: none;
-
-  &.js-page-section {
-    display: block;
-  }
-}
-
-
 #home {
   .hero-container {
     @include flexbox($alignItems: center, $justifyContent: center);
@@ -112,6 +226,7 @@ header {
     @include media-down(m) {
       flex-direction: column;
       text-align: center;
+      padding-top: 40px;
     }
   }
 
@@ -119,15 +234,16 @@ header {
     flex: 1;
 
     .hero-shot {
-      height: 350px;
-      width: 560px;
+      width: 100%;
+      height: auto;
+      max-width: 560px;
       position: relative;
       border-radius: 4px;
       overflow: hidden;
 
       img {
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: cover;
         display: block;
       }
@@ -172,14 +288,15 @@ header {
     font-size: 14px;
     transition: background 0.3s ease;
     margin-top: 18px;
-
+    border: 1px solid transparent;
 
     &:hover {
-      background-color: $color-dark-cyan;
+      background-color: $color-white;
+      color: $color-light-cyan;
+      border: 1px solid;
     }
   }
 
-  // NEWSLETTER SUBSCRIBE NESTO TAKA
   .newsletter {
     background-color: #F8F8F8;
     padding-top: 40px;
@@ -214,6 +331,10 @@ header {
     gap: 15px;
     width: 100%;
 
+    @include media-down(s) {
+      flex-direction: column;
+    }
+
     .subscribe-input {
       width: 350px;
       height: 42px;
@@ -223,6 +344,11 @@ header {
       padding: 0 15px;
       font-family: $font-SourceSansProR;
       margin-top: 18px;
+
+      @include media-down(s) {
+        width: 100%;
+        max-width: 350px;
+      }
 
       &::placeholder {
         color: $color-dark-cyan;
@@ -241,113 +367,135 @@ header {
       transition: background 0.3s ease;
       margin-top: 18px;
       cursor: pointer;
+      border: 1px solid transparent;
+
+      @include media-down(s) {
+        width: 100%;
+        max-width: 350px;
+      }
 
       &:hover {
-        background-color: $color-dark-cyan;
+        background-color: $color-white;
+        color: $color-light-cyan;
+        border: 1px solid;
       }
     }
   }
 
   // PROGRAMS SECTION
   .programs-section {
-    text-align: center;
-    padding: 40px 0;
+  text-align: center;
+  padding: 40px 0;
+  overflow: hidden;
 
-    .section-title {
-      font-size: 36px;
-      font-family: $font-PlayfairDisplay;
-      margin-bottom: 40px;
-    }
+  .section-title { font-size: 36px; font-family: $font-PlayfairDisplay; margin-bottom: 40px; }
+  .section-subtitle { font-size: 24px; font-family: $font-SourceSansProR; margin-bottom: 30px; }
 
-    .section-subtitle {
-      font-size: 24px;
-      font-family: $font-SourceSansProR;
-      margin-bottom: 30px;
-    }
+  .slider-controls-container {
+    @include flexbox($alignItems: center, $justifyContent: center);
+    position: relative;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 40px;
+  }
 
-    .slider-controls-container {
-      @include flexbox($alignItems: center, $justifyContent: center);
-      position: relative;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .programs-wrapper {
-      overflow: hidden;
-      width: 100%;
-      margin: 0 20px;
-    }
-
-    .programs-container {
-      display: flex;
-      gap: 60px;
-      transition: transform 0.5s ease-in-out;
-      width: max-content;
-    }
-
-    .program-card {
-      flex: 0 0 330px;
-      @include flexbox($direction: column, $alignItems: center);
-
-      .card-image img {
-        width: 330px;
-        height: 330px;
-        object-fit: cover;
-        border-radius: 4px;
-      }
-
-      .card-title {
-        font-size: 24px;
-        margin: 15px 0;
-        font-family: $font-SourceSansProR;
-      }
-
-      .card-text {
-        font-size: 18px;
-        color: $color-black;
-        font-family: $font-SourceSansProL;
-        margin-bottom: 35px;
-
-      }
-
-      .btn-learn {
-        display: inline-block;
-        background-color: $color-light-cyan;
-        color: $color-white;
-        padding: 11px 45.5px;
-        font-family: $font-Domine;
-        font-weight: 400;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: background 0.3s ease;
-        margin-top: 18px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: $color-dark-cyan;
-        }
-      }
-    }
-
-    .slider-arrow {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 10;
-
-      img {
-        width: 30px;
-      }
-
-      &:disabled {
-        opacity: 0.2;
-      }
+  
+  .programs-wrapper {
+    overflow: hidden; 
+    width: 100%;
+    max-width: 1110px;
+    
+    // --- centered scroll ---
+    @include media-down(m) {
+        overflow-x: auto; 
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory; 
+        
+        
+        padding: 0 10%; 
+        
+        
+        &::-webkit-scrollbar { display: none; }
+        scrollbar-width: none;
     }
   }
 
-  // STUDENT TESTIOMANL
+  
+  .programs-container {
+    display: flex;
+    gap: 60px;
+    transition: transform 0.5s ease-in-out; 
+    width: max-content;
 
+    @include media-down(m) {
+        gap: 20px; 
+        transform: none !important;  
+        width: auto;
+    }
+  }
+
+  // cards 
+  .program-card {
+    flex: 0 0 330px;
+    background-color: $color-white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 580px;
+    
+    // --- mobile cards ---
+    @include media-down(m) {
+        // card shows a bit of the other card 
+        flex: 0 0 80%; 
+        max-width: 80%;
+        
+        min-height: auto; 
+        scroll-snap-align: center; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    }
+
+    .card-image img { width: 100%; height: 330px; object-fit: cover; }
+    .card-title { font-size: 24px; margin: 15px 0; font-family: $font-SourceSansProR; padding: 0 10px; }
+    .card-text { font-size: 18px; color: $color-black; font-family: $font-SourceSansProL; margin-bottom: 20px; padding: 0 15px; }
+    
+    .btn-learn {
+      display: inline-block;
+      background-color: $color-light-cyan;
+      color: $color-white;
+      padding: 11px 45.5px;
+      font-family: $font-Domine;
+      font-weight: 400;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background 0.3s ease;
+      margin-top: auto;
+      margin-bottom: 30px;
+      cursor: pointer;
+      border: 1px solid transparent;
+
+      &:hover { background-color: $color-white; color: $color-light-cyan; border: 1px solid; }
+    }
+  }
+
+  // 4. sliders )
+  .slider-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+    img { width: 30px; }
+    &:disabled { opacity: 0.2; }
+
+    @include media-down(m) {
+        display: none !important;
+    }
+  }
+}
+
+  // testimonial section
   .testimonial-section {
     padding: 80px 0;
     text-align: center;
@@ -380,15 +528,20 @@ header {
   }
 
   .testimonial-slide {
-    flex: 0 0 100%; // Shows one testimonial at a time
+    flex: 0 0 100%;
     padding: 0 50px;
     @include flexbox($direction: column, $alignItems: center);
+
+    
+    @include media-down(s) {
+      padding: 0 10px;
+    }
 
     .student-photo {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 3px solid #6da7a9; // Teal circle border from your image
+      border: 3px solid #6da7a9;
       overflow: hidden;
       margin-bottom: 30px;
 
@@ -404,9 +557,13 @@ header {
       font-style: italic;
       font-size: 18px;
       line-height: 1.6;
-      color: #333;
+      color: $color-black;
       margin-bottom: 25px;
       max-width: 700px;
+
+      @include media-down(s) {
+        font-size: 16px;
+      }
     }
 
     .student-name {
@@ -414,15 +571,11 @@ header {
       font-weight: 600;
       font-size: 18px;
       font-style: normal;
-      color: #000;
+      color: $color-black;
     }
   }
 
-  .slider-arrow {
-    cursor: pointer;
-  }
-
-  // PARTNERS SLIDING 
+  // partners sliding 
   .partners-section {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -449,8 +602,6 @@ header {
       gap: 60px;
       width: max-content;
       animation: scroll-left 40s linear infinite;
-
-
     }
 
     .partner-logo {
@@ -469,21 +620,19 @@ header {
     }
   }
 
-
-
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
     }
 
     100% {
-
-      transform: translateX(-25%);
+      transform: translateX(-50%);
     }
+
+    
   }
 
   // JOURNEY
-
   .journey-start {
     background-color: $color-light-grey;
     padding-top: 80px;
@@ -509,7 +658,6 @@ header {
       align-items: center;
       text-align: center;
       max-width: 1000px;
-
 
       .journey-title {
         font-family: $font-PlayfairDisplay;
@@ -539,9 +687,12 @@ header {
         transition: background 0.3s ease;
         margin-top: 18px;
         cursor: pointer;
+        border: 1px solid transparent;
 
         &:hover {
-          background-color: $color-dark-cyan;
+          background-color: $color-white;
+          color: $color-light-cyan;
+          border: 1px solid;
         }
       }
     }
@@ -557,8 +708,6 @@ header {
       }
     }
   }
-
-  // FOOTER
 }
 
 .main-footer {
@@ -569,15 +718,14 @@ header {
   .footer-content {
     @include flexbox($justifyContent: space-between, $alignItems: flex-start);
 
-
-
     @include media-down(m) {
       flex-direction: column;
+      align-items: center;
       gap: 50px;
+      text-align: center;
     }
   }
 
-  // left side
   .footer-left {
     .brand-logos {
       @include flexbox($alignItems: center);
@@ -595,7 +743,6 @@ header {
 
       a {
         color: $color-black;
-        transition: color 0.3s ease;
         display: block;
 
         &:hover {
@@ -603,11 +750,22 @@ header {
         }
       }
     }
+
+    @include media-down(m) {
+
+      .brand-logos,
+      .social-icons {
+        justify-content: center;
+      }
+    }
   }
 
-  // right side
   .footer-right {
     text-align: left;
+
+    @include media-down(m) {
+      text-align: center;
+    }
 
     .contact-title {
       font-family: $font-PlayfairDisplay;
@@ -621,21 +779,8 @@ header {
       font-size: 18px;
       color: $color-black;
 
-      .contact-link {
-        display: block;
-        color: $color-black;
-        margin-bottom: 15px;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: $color-dark-cyan;
-          text-decoration: underline;
-        }
-      }
-
       .address-text {
         margin-bottom: 15px;
-
       }
     }
   }
@@ -658,17 +803,13 @@ header {
   }
 }
 
-#about {
-  background-color: $color-black;
-}
-
+// PROGRAMS PAGE
 #programs {
   .programs-hero {
     position: relative;
     padding: 140px 20px;
     text-align: center;
     overflow: hidden;
-
 
     .hero-bg-image {
       position: absolute;
@@ -680,7 +821,6 @@ header {
       z-index: 0;
     }
 
-
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -691,14 +831,12 @@ header {
       z-index: 1;
     }
 
-
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 900px;
       margin: 0 auto;
     }
-
 
     .hero-title {
       font-family: $font-PlayfairDisplay;
@@ -710,7 +848,7 @@ header {
     .hero-subtitle {
       font-family: $font-SourceSansProL;
       font-size: 22px;
-      color: #555;
+      color: $color-black;
       margin-bottom: 45px;
     }
 
@@ -718,6 +856,11 @@ header {
       display: flex;
       justify-content: center;
       gap: 20px;
+
+      @include media-down(s) {
+        flex-direction: column;
+        align-items: center;
+      }
 
       a {
         padding: 12px 40px;
@@ -728,32 +871,27 @@ header {
 
       .btn-enroll {
         background-color: $color-light-cyan;
-        color: white;
+        color: $color-white;
         border: 1px solid $color-light-cyan;
 
         &:hover {
           background-color: $color-white;
           color: $color-dark-cyan;
-          transition: ease-in 0.2s;
         }
       }
 
       .btn-instructors {
-        background-color: white;
+        background-color:$color-white;
         color: $color-light-cyan;
         border: 1px solid $color-light-cyan;
 
         &:hover {
           background-color: $color-light-cyan;
           color: white;
-          transition: ease-in 0.2s;
         }
       }
     }
   }
-
-  // PROGRAMS SECITON
-
 
   .programs-grid-section {
     padding-top: 60px;
@@ -772,12 +910,10 @@ header {
 
     .programs-grid {
       display: grid;
-
       grid-template-columns: repeat(3, 1fr);
       gap: 60px;
       max-width: 1400px;
       margin: 0 auto;
-
 
       @include media-down(m) {
         grid-template-columns: 1fr;
@@ -786,7 +922,6 @@ header {
       .program-card {
         position: relative;
         border: none;
-
 
         .card-image {
           width: 100%;
@@ -800,7 +935,6 @@ header {
           }
         }
 
-
         .card-content {
           position: relative;
           z-index: 2;
@@ -809,7 +943,6 @@ header {
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.253);
           padding: 30px;
           width: 100%;
-
           transition: transform 0.3s ease;
 
           .card-title {
@@ -832,28 +965,24 @@ header {
           .card-link {
             font-family: $font-SourceSans;
             font-size: 14px;
-            color: #333;
+            color: $color-black;
             text-decoration: none;
             font-weight: 700;
             transition: color 0.3s ease;
-
 
             span {
               border-bottom: 2px solid transparent;
               transition: border-color 0.3s ease;
             }
 
-
             &:hover {
               color: $color-light-cyan;
-
 
               span {
                 border-bottom-color: $color-light-cyan;
               }
             }
           }
-
         }
       }
     }
@@ -872,14 +1001,12 @@ header {
       justify-content: space-between;
       gap: 60px;
 
-      // Stack on mobile
       @include media-down(m) {
         flex-direction: column;
         text-align: center;
       }
     }
 
-    // --- LEFT SIDE ---
     .testimonials-text {
       flex: 1;
       max-width: 650px;
@@ -919,7 +1046,6 @@ header {
       }
     }
 
-    // --- RIGHT SIDE (CARDS) ---
     .testimonials-cards {
       flex: 1.2;
       display: flex;
@@ -937,16 +1063,13 @@ header {
       max-width: 500px;
       width: 100%;
 
-
       @include media-down(m) {
         align-self: center !important;
       }
 
-
       &.card-right {
         align-self: flex-end;
       }
-
 
       &.card-left {
         align-self: flex-start;
@@ -958,7 +1081,6 @@ header {
         border-radius: 50%;
         object-fit: cover;
         flex-shrink: 0;
-
       }
 
       .card-info {
@@ -967,391 +1089,390 @@ header {
           font-size: 16px;
           color: $color-dark-grey;
           margin-bottom: 5px;
-
         }
 
         p {
           font-family: $font-SourceSansProL;
           font-style: italic;
           font-size: 14px;
-          color: $color-light-grey;
+          color: $color-black;
+          opacity: 65%;
 
           &.marko {
             color: $color-black;
             font-weight: 400;
+            opacity: 100%;
           }
         }
       }
     }
   }
+}
 
+// modal style
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 
-
-  // MODAL PROGRAMS DIGITAL
-  // --- MODAL BACKGROUND ---
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); // Dimmed background
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-
-    &.is-visible {
-      opacity: 1;
-      visibility: visible;
-    }
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
   }
+}
 
-  // --- LARGE MODAL CONTAINER ---
-  .modal-container.modal-large {
-    background: white;
-    width: 100%;
-    max-width: 1100px; // Wide layout
-    height: 90vh; // 90% screen height
-    overflow-y: auto; // Scrollable
-    border-radius: 4px;
-    position: relative;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+.modal-container.modal-large {
+  background: $color-white;
+  width: 100%;
+  max-width: 1100px;
+  height: 90vh;
+  overflow-y: auto;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 
-    // X Close Button
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 30px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 10;
-      color: $color-dark-grey;
-      transition: color 0.2s;
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    color: $color-dark-grey;
+    transition: color 0.2s;
 
-      &:hover {
-        color: $color-black;
-      }
-    }
-
-    // --- BUTTON STYLES (MATCHING HERO) ---
-
-    // 1. Solid Teal Button (With Shadow)
-    .btn-teal {
-        display: inline-block;
-        background-color: $color-light-cyan; // Starts Teal
-        color: $color-white;                 // Starts White Text
-        padding: 11px 45.5px;
-        font-family: $font-Domine;
-        font-size: 14px;
-        border-radius: 4px;
-        text-decoration: none;
-        
-        // IMPORTANT: Border must exist so it doesn't jump on hover
-        border: 1px solid $color-light-cyan; 
-        
-        cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-        transition: all 0.3s ease;
-
-        &.full-width { 
-            width: 100%; 
-            text-align: center; 
-            padding-left: 0; 
-            padding-right: 0; 
-        }
-
-        // HOVER STATE: White Background, Teal Text, Teal Border
-        &:hover {
-            background-color: $color-white;
-            color: $color-light-cyan;
-            border-color: $color-light-cyan;
-            
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-    }
-
- 
-    // --- SECTIONS & LAYOUT ---
-    .modal-section {
-      padding: 60px 50px;
-
-      &.bg-gray {
-        background-color: #F9F9F9;
-      }
-
-      &.text-center {
-        text-align: center;
-      }
-
-      &.pb-large {
-        padding-bottom: 80px;
-      }
-    }
-
-    .section-heading {
-      font-family: $font-PlayfairDisplay;
-      font-size: 28px;
-      margin-bottom: 20px;
+    &:hover {
       color: $color-black;
     }
-
-    // HERO AREA
-    .modal-hero {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-
-      .modal-hero-content {
-        flex: 1;
-
-        .eyebrow {
-          font-size: 12px;
-          font-weight: bold;
-          letter-spacing: 1px;
-          color: #555;
-          display: block;
-          margin-bottom: 10px;
-          font-family: $font-SourceSans;
-        }
-
-        .program-title {
-          font-family: $font-PlayfairDisplay;
-          font-size: 38px;
-          margin-bottom: 20px;
-          line-height: 1.2;
-          color: $color-black;
-        }
-
-        .program-desc {
-          color: #666;
-          line-height: 1.6;
-          margin-bottom: 30px;
-          font-family: $font-SourceSansProL;
-        }
-      }
-
-      .modal-hero-image {
-        flex: 1;
-
-        img {
-          width: 100%;
-          border-radius: 4px;
-          display: block;
-        }
-      }
-    }
-
-    // HIGHLIGHTS (With Icons)
-    .highlights-grid {
-      display: flex;
-      gap: 50px;
-
-      .highlights-info {
-        flex: 1;
-
-        p {
-          font-family: $font-SourceSansProL;
-          margin-bottom: 25px;
-          color: #555;
-        }
-      }
-
-      .highlights-icons {
-            flex: 1.5; 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 30px;
-            
-            .icon-box {
-                // NEW CIRCLE ICON STYLING
-                i { 
-                    // 1. Shape & Size
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 60px;   // Fixed width
-                    height: 60px;  // Fixed height
-                    border-radius: 50%; // Makes it a perfect circle
-                    
-                    // 2. Colors
-                    background-color: $color-light-cyan; // Teal Circle
-                    color: $color-white;                 // White Icon
-                    
-                    // 3. Icon Size & Spacing
-                    font-size: 32px; // Smaller than box to fit inside
-                    margin-bottom: 15px;
-                }
-                
-                h4 { 
-                    font-weight: 700; 
-                    margin-bottom: 8px; 
-                    font-size: 18px; 
-                    font-family: $font-SourceSans; 
-                }
-                
-                p { 
-                    font-size: 14px; 
-                    color: #666; 
-                    line-height: 1.5; 
-                    font-family: $font-SourceSansProL; 
-                }
-              }
-            }
-          }
-        
-
-    // PRICING
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 40px;
-
-      .badge {
-        background: #E0E0E0;
-        padding: 5px 10px;
-        font-size: 11px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        font-family: $font-SourceSans;
-      }
-
-      p {
-        font-family: $font-SourceSansProL;
-        color: #555;
-        margin-top: 10px;
-      }
-    }
-
-    .pricing-cards {
-      display: flex;
-      gap: 30px;
-      max-width: 900px;
-      margin: 0 auto;
-
-      .price-card {
-        flex: 1;
-        padding: 30px;
-        border-radius: 6px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-
-        &.white-card {
-          background: white;
-
-          .price-title {
-            font-family: $font-PlayfairDisplay;
-            font-size: 20px;
-            color: $color-light-cyan;
-            margin-bottom: 10px;
-          }
-
-          .sub-text {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-            font-family: $font-SourceSans;
-          }
-
-          .price-list-simple {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-
-            li {
-              font-size: 14px;
-              color: $color-light-cyan;
-              margin-bottom: 8px;
-              font-weight: 600;
-              font-family: $font-SourceSans;
-            }
-          }
-        }
-
-        &.teal-card {
-          background: $color-light-cyan;
-          color: white;
-          display: flex;
-          gap: 20px;
-
-          .price-title-white {
-            font-size: 20px;
-            font-family: $font-PlayfairDisplay;
-            margin-bottom: 10px;
-          }
-
-          .price-desc-white {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            font-family: $font-SourceSansProL;
-          }
-
-          .price-amount {
-            font-size: 28px;
-            font-weight: bold;
-            font-family: $font-SourceSans;
-          }
-
-          .price-features ul {
-            list-style: none;
-            padding: 0;
-
-            li {
-              font-size: 13px;
-              margin-bottom: 8px;
-              opacity: 0.9;
-              font-family: $font-SourceSans;
-            }
-          }
-        }
-      }
-    }
-
-    // FOOTER CTA
-    .cta-text {
-      margin-bottom: 25px;
-      font-family: $font-SourceSansProL;
-      color: #555;
-    }
-
-    .modal-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    // RESPONSIVE
     @include media-down(m) {
+    top: 0px;    
+    right: 10px;  
+  }
+  }
 
-      .modal-hero,
-      .highlights-grid,
-      .pricing-cards,
-      .teal-card,
-      .modal-buttons {
-        flex-direction: column;
-      }
+  .btn-teal {
+    display: inline-block;
+    background-color: $color-light-cyan;
+    color: $color-white;
+    padding: 11px 45.5px;
+    font-family: $font-Domine;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid $color-light-cyan;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &.full-width {
+      width: 100%;
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-light-cyan;
+      border-color: $color-light-cyan;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .modal-section {
+    padding: 50px 50px;
+
+    @include media-down(m) {
+      padding: 30px 20px;
+    }
+
+    &.bg-gray {
+      background-color: $color-light-grey;
+    }
+
+    &.text-center {
+      text-align: center;
+    }
+
+    .section-text-max {
+      font-size: 18px;
+      font-family: $font-SourceSansProL;
+      color: $color-black;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    &.pb-large {
+      padding-bottom: 80px;
+    }
+  }
+
+  .section-heading {
+    font-family: $font-PlayfairDisplay;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: $color-black;
+  }
+
+  .modal-hero {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+    @include media-down(m) {
+      flex-direction: column;
 
       .modal-hero-image {
         order: -1;
         margin-bottom: 20px;
       }
     }
+
+    .modal-hero-content {
+      flex: 1;
+
+      .eyebrow {
+        font-size: 18px;
+        color: $color-light-grey;
+        display: block;
+        margin-bottom: 30px;
+        font-family: $font-SourceSansProR;
+        color: $color-black;
+      }
+
+      .program-title {
+        font-family: $font-PlayfairDisplay;
+        font-size: 36px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: $color-black;
+      }
+
+      .program-desc {
+        color: $color-black;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        font-family: $font-SourceSansProL;
+      }
+    }
+
+    .modal-hero-image {
+      flex: 1;
+
+      img {
+        width: 100%;
+        border-radius: 4px;
+        display: block;
+      }
+    }
   }
-}
 
-#instructors {
-  background-color: $color-dark-cyan;
-}
+  .highlights-grid {
+    display: flex;
+    gap: 50px;
 
-#contact {
-  background-color: $color-dark-grey;
-}
+    @include media-down(m) {
+      flex-direction: column;
+    }
 
-#blog {
-  background-color: $color-light-cyan;
+    .highlights-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100%;
+
+      p {
+        font-family: $font-SourceSansProL;
+        margin-bottom: 25px;
+        color: $color-black;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .btn-teal {
+        margin-top: auto;
+      }
+    }
+
+    .highlights-icons {
+      flex: 1.5;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+
+      .icon-box {
+        i {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background-color: $color-light-cyan;
+          color: $color-white;
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        h4 {
+          font-weight: 700;
+          margin-bottom: 8px;
+          font-size: 18px;
+          font-family: $font-SourceSans;
+        }
+
+        p {
+          font-size: 14px;
+          color: $color-black;
+          line-height: 1.5;
+          font-family: $font-SourceSansProL;
+        }
+      }
+    }
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 40px;
+
+    .badge {
+      background: #62A1A454;
+      padding: 12px 27px;
+      font-size: 11px;
+      color: $color-dark-cyan;
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-family: $font-SourceSans;
+    }
+
+    p {
+      font-family: $font-SourceSansProL;
+      color: $color-black;
+      margin-top: 10px;
+    }
+  }
+
+  .pricing-cards {
+    display: flex;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @include media-down(m) {
+      flex-direction: column;
+    }
+
+    .price-card {
+      flex: 1;
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+      &.white-card {
+        background: $color-white;
+
+        .price-title {
+          font-family: $font-PlayfairDisplay;
+          font-size: 20px;
+          color: $color-light-cyan;
+          margin-bottom: 10px;
+        }
+
+        .sub-text {
+          font-size: 13px;
+          color: $color-black;
+          margin-bottom: 20px;
+          font-family: $font-SourceSans;
+        }
+
+        .price-list-simple {
+          list-style: none;
+          padding: 0;
+          margin-bottom: 30px;
+
+          li {
+            font-size: 14px;
+            color: $color-light-cyan;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-family: $font-SourceSans;
+          }
+        }
+      }
+
+      &.teal-card {
+        background: $color-light-cyan;
+        color: $color-white;
+        display: flex;
+        gap: 20px;
+
+        @include media-down(m) {
+          flex-direction: column;
+        }
+
+        .price-title-white {
+          font-size: 20px;
+          font-family: $font-PlayfairDisplay;
+          margin-bottom: 10px;
+        }
+
+        .price-desc-white {
+          font-size: 13px;
+          opacity: 0.9;
+          margin-bottom: 20px;
+          font-family: $font-SourceSansProL;
+        }
+
+        .price-amount {
+          font-size: 28px;
+          font-weight: bold;
+          font-family: $font-SourceSans;
+        }
+
+        .price-features ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            font-size: 13px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            font-family: $font-SourceSans;
+          }
+        }
+      }
+    }
+  }
+
+  .cta-text {
+    margin-bottom: 25px;
+    font-family: $font-SourceSansProL;
+    color: $color-black;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    @include media-down(m) {
+      flex-direction: column;
+    }
+  }
 }
