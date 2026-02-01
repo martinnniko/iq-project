@@ -6,20 +6,25 @@
     <title>Programs - IQ Online Academy</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="img/flaticon.ico">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body id="programs">
 
     <header class="main-padding">
         <nav class="nav">
             <div class="nav-left">
-                <a href="index.html" class="nav-item active"><span>Home</span></a>
+                <a href="index.html" class="nav-item"><span>Home</span></a>
                 <a href="#" class="nav-item"><span>About</span></a>
-                <a href="programs.html" class="nav-item"><span>Programs</span></a>
+                <a href="programs.html" class="nav-item active"><span>Programs</span></a>
             </div>
 
-            <a href="/" id="logo">
+            <a href="index.html" id="logo">
                 <img src="img/logo.png" alt="logo" height="77" width="113">
             </a>
+
+            <button class="burger-btn" id="burgerBtn" aria-label="Menu">
+                <span class="burger-icon"></span>
+            </button>
 
             <div class="nav-right">
                 <a href="#" class="nav-item"><span>Instructors</span></a>
@@ -32,7 +37,8 @@
     <main>
     <section class="programs-hero main-padding">
         <img src="img/program-hero.jpg" alt="Background" class="hero-bg-image">
-        <div class="hero-overlay"></div> <div class="hero-content">
+        <div class="hero-overlay"></div> 
+        <div class="hero-content">
             <h1 class="hero-title">Welcome to IQ Online Academy</h1>
             <p class="hero-subtitle">Practical skills, mentorship, and recognized certifications to advance your career.</p>
             
@@ -42,277 +48,201 @@
             </div>
         </div>
     </section>
+
     <section class="programs-grid-section main-padding">
-    
-    <h2 class="section-title">Our Programs</h2>
+        <h2 class="section-title">Our Programs</h2>
+        <div class="programs-grid">
+            <article class="program-card">
+                <div class="card-image"><img src="img/programs/digital-marketing.jpg" alt="Digital Marketing"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Digital Marketing Academy</h3>
+                    <p class="card-text">Learn the strategies and tools that drive modern businesses online, with hands-on projects and industry mentorship.</p>
+                    <a href="#" class="card-link js-open-program" data-id="marketing"><span>Read More </span>&rarr;</a>
+                </div>
+            </article>
 
-    <div class="programs-grid">
-        <div class="program-card">
-            <div class="card-image">
-                <img src="img/programs/digital-marketing.jpg" alt="Digital Marketing" height="333" width="333">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Digital Marketing Academy</h3>
-                <p class="card-text">Learn the strategies and tools that drive modern businesses online, with hands-on projects and industry mentorship.</p>
-                <a href="#" class="card-link js-open-program"><span>Read More </span>&rarr;</a>
-            </div>
+            <article class="program-card">
+                <div class="card-image"><img src="img/programs/graphic-design.jpg" alt="Graphic Design"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Graphic Design Academy</h3>
+                    <p class="card-text">Develop creative and technical skills using industry tools to build a professional design portfolio.</p>
+                    <a href="#" class="card-link js-open-program" data-id="graphic-design"><span>Read More </span>&rarr;</a>
+                </div>
+            </article>
+
+            <article class="program-card">
+                <div class="card-image"><img src="img/programs/ui-ux.jpg" alt="UX/UI Design"></div>
+                <div class="card-content">
+                    <h3 class="card-title">UX/UI Academy</h3>
+                    <p class="card-text">Learn how to design user-friendly digital experiences through research, prototyping, and real-world case studies.</p>
+                    <a href="#" class="card-link js-open-program" data-id="ui-ux"><span>Read More </span>&rarr;</a>
+                </div>
+            </article>
+
+            <article class="program-card">
+                <div class="card-image"><img src="img/programs/motion-graphics.jpg" alt="Motion Graphics"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Motion Graphics Academy</h3>
+                    <p class="card-text">Master the art of visual storytelling through animation, design, and motion techniques that bring ideas to life.</p>
+                    <a href="#" class="card-link js-open-program" data-id="motion"><span>Read More </span>&rarr;</a>
+                </div>
+            </article>
+
+            <article class="program-card">
+                <div class="card-image"><img src="img/programs/interior-design.jpg" alt="Interior Design"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Interior Design Academy</h3>
+                    <p class="card-text">Learn how to create functional, stylish, and inspiring spaces with practical design skills and professional guidance.</p>
+                    <a href="#" class="card-link js-open-program" data-id="interior"><span>Read More </span>&rarr;</a>
+                </div>
+            </article>
+
+            <article class="program-card">
+                <div class="card-image"><img src="img/programs/front-end.jpg" alt="Front End Development"></div>
+                <div class="card-content">
+                    <h3 class="card-title">Front-End Academy</h3>
+                    <p class="card-text">Build modern, responsive, and user-friendly websites by developing hands-on coding and design expertise.</p>
+                    <a href="#" class="card-link js-open-program" data-id="frontend"><span>Read More </span>&rarr;</a>
+                </div>
+            </article>
         </div>
+    </section>
 
-        <div class="program-card">
-            <div class="card-image">
-                <img src="img/programs/graphic-design.jpg" alt="Graphic Design" height="333" width="333">
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="testimonials-text">
+                <h2 class="testi-title">What Our<br>Students Say</h2>
+                <p class="testi-desc">From career changers to creative professionals, our students have transformed their futures with the knowledge and confidence gained at IQ Online Academy.</p>
+                <a href="#" class="btn-view-more">View More</a>
             </div>
-            <div class="card-content">
-                <h3 class="card-title">Graphic Design Academy</h3>
-                <p class="card-text">Develop creative and technical skills using industry tools to build a professional design portfolio.</p>
-                <a href="#" class="card-link"><span>Read More </span>&rarr;</a>
-            </div>
-        </div>
-
-        <div class="program-card">
-            <div class="card-image">
-                <img src="img/programs/ui-ux.jpg" alt="UX/UI Design" height="333" width="333">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">UX/UI Academy</h3>
-                <p class="card-text">Learn how to design user-friendly digital experiences through research, prototyping, and real-world case studies.</p>
-                <a href="#" class="card-link"><span>Read More </span>&rarr;</a>
-            </div>
-        </div>
-
-        <div class="program-card">
-            <div class="card-image">
-                <img src="img/programs/motion-graphics.jpg" alt="Motion Graphics" height="333" width="333">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Motion Graphics Academy</h3>
-                <p class="card-text">Master the art of visual storytelling through animation, design, and motion techniques that bring ideas to life.</p>
-                <a href="#" class="card-link"><span>Read More </span>&rarr;</a>
-            </div>
-        </div>
-
-        <div class="program-card">
-            <div class="card-image">
-                <img src="img/programs/interior-design.jpg" alt="Interior Design" height="333" width="333">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Interior Design Academy</h3>
-                <p class="card-text">Learn how to create functional, stylish, and inspiring spaces with practical design skills and professional guidance.</p>
-                <a href="#" class="card-link"><span>Read More </span>&rarr;</a>
-            </div>
-        </div>
-
-        <div class="program-card">
-            <div class="card-image">
-                <img src="img/programs/front-end.jpg" alt="Front End Development" height="333" width="333">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Front-End Academy</h3>
-                <p class="card-text">Build modern, responsive, and user-friendly websites by developing hands-on coding and design expertise.</p>
-                <a href="#" class="card-link"><span>Read More </span>&rarr;</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-<section class="testimonials-section">
-    <div class="testimonials-container">
-        
-        <div class="testimonials-text">
-            <h2 class="testi-title">What Our<br>Students Say</h2>
-            <p class="testi-desc">
-                From career changers to creative professionals, our students have transformed their futures with the knowledge and confidence gained at IQ Online Academy.
-            </p>
-            <a href="#" class="btn-view-more">View More</a>
-        </div>
-
-        <div class="testimonials-cards">
-            
-            <div class="testi-card card-right">
-                <img src="img/student-elena.png" alt="Student" class="student-img">
-                <div class="card-info">
-                    <h4>Elena</h4>
-                    <p>The Digital Marketing Academy gave me the hands-on skills and confidence I needed to land my first agency role within three months.</p>
+            <div class="testimonials-cards">
+                <div class="testi-card card-right">
+                    <img src="img/student-elena.png" alt="Student" class="student-img">
+                    <div class="card-info">
+                        <h4>Elena</h4>
+                        <p>The Digital Marketing Academy gave me the hands-on skills and confidence I needed to land my first agency role within three months.</p>
+                    </div>
+                </div>
+                <div class="testi-card card-left">
+                    <img src="img/student-marko.png" alt="Student" class="student-img">
+                    <div class="card-info">
+                        <h4>Marko</h4>
+                        <p class="marko">Joining IQ Online Academy was the best career decision I made; I transitioned into front-end development and secured a remote position right after graduation.</p>
+                    </div>
+                </div>
+                <div class="testi-card card-right">
+                    <img src="img/student-maja.png" alt="Student" class="student-img">
+                    <div class="card-info">
+                        <h4>Maja</h4>
+                        <p>I loved how practical the lessons were — my instructors were supportive, and I was able to build a portfolio that truly impressed employers.</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="testi-card card-left">
-                <img src="img/student-marko.png" alt=Student class="student-img">
-                <div class="card-info">
-                    <h4>Marko</h4>
-                    <p class="marko">Joining IQ Online Academy was the best career decision I made; I transitioned into front-end development and secured a remote position right after graduation.</p>
-                </div>
-            </div>
-
-            <div class="testi-card card-right">
-                <img src="img/student-maja.png" alt="Student" class="student-img">
-                <div class="card-info">
-                    <h4>Maja</h4>
-                    <p>I loved how practical the lessons were — my instructors were supportive, and I was able to build a portfolio that truly impressed employers.</p>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
-    
+    </section>
     </main>
 
-   <footer class="main-footer">
-    <div class="main-padding">
-        
-        <div class="footer-content">
-            <div class="footer-left">
-                <div class="brand-logos">
+    <footer class="main-footer">
+        <div class="main-padding">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="brand-logos">
                         <img src="img/logo.png" alt="IQ Online Academy" width="135" height="92">
-                    <div class="cpd-badge">
-                        <img src="img/cpd.png" alt="CPD Accredited" height="92" width="91">
+                        <div class="cpd-badge"><img src="img/cpd.png" alt="CPD Accredited" height="92" width="91"></div>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#"><img src="img/social/facebook.svg" alt="facebook" width="29" height="29"></a>
+                        <a href="#"><img src="img/social/instagram.svg" alt="facebook" width="29" height="29"></a>
+                        <a href="#"><img src="img/social/Linkedin.svg" alt="facebook" width="29" height="29"></a>
                     </div>
                 </div>
-
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/IQOnlineAcademyMK/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                      <img src="img/social/facebook.svg" alt="facebook" width="29" height="29">
-                    </a>
-                    <a href="https://www.instagram.com/iqonlineacademy/?hl=en"target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <img src="img/social/instagram.svg" alt="facebook" width="29" height="29">
-                    </a>
-                    <a href="https://mk.linkedin.com/company/iq-online-academy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <img src="img/social/Linkedin.svg" alt="facebook" width="29" height="29">
-                    </a>
+                <div class="footer-right">
+                    <h3 class="contact-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <p class="address-text">info@iqonlineacademy.com</p>
+                        <p class="address-text">Bul. Partizanski Odredi 52-1/10<br>1000, Skopje</p>
+                        <p class="address-text"> +389 70 65 16 65 </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="footer-right">
-                <h3 class="contact-title">Contact Us</h3>
-                
-                <div class="contact-info">
-                    <p class="address-text">info@iqonlineacademy.com</p>
-                    
-                    <p class="address-text">
-                        Bul. Partizanski Odredi 52-1/10<br>
-                        1000, Skopje
-                    </p>
-                    
-                    <p class="address-text"> +389 70 65 16 65 </p>
-                </div>
+            <hr class="footer-line">
+            <div class="footer-bottom">
+                <p>© All Rights Reserved IQ Online Academy 2025</p>
             </div>
         </div>
+    </footer>
 
-        <hr class="footer-line">
-
-        <div class="footer-bottom">
-            <p>© All Rights Reserved IQ Online Academy 2025</p>
-        </div>
-    </div>
-</footer>
-
-<!-- PROGRAMS MODUL DIGITAL MARKETING -->
-
-<div class="modal-overlay" id="program-modal">
-    <div class="modal-container modal-large">
-        <button class="modal-close" aria-label="Close modal">&times;</button>
-        
-        <div class="modal-section modal-hero">
-            <div class="modal-hero-content">
-                <span class="eyebrow">FOCUSED ON PRACTICAL SKILLS</span>
-                <h2 class="program-title">Digital Marketing Academy</h2>
-                <p class="program-desc">Master SEO, social media, content strategy, and analytics through expert-led online training designed to equip you with the skills to plan, execute, and optimize successful digital campaigns.</p>
-                <a href="#" class="btn-teal">Enroll Now</a>
-            </div>
-            <div class="modal-hero-image">
-                <img src="img/programs/digital-marketing.jpg" alt="Digital Marketing">
-            </div>
-        </div>
-
-        <div class="modal-section bg-gray text-center">
-            <h3 class="section-heading">Program Overview</h3>
-            <p class="section-text-max">The program introduces you to the core areas of modern marketing, including SEO, social media, content, and analytics. Through guided lessons and practical exercises, you’ll gain the skills to design and manage campaigns that deliver measurable results.</p>
-        </div>
-
-        <div class="modal-section">
-            <div class="highlights-grid">
-                <div class="highlights-info">
-                    <h3 class="section-heading">Program Highlights</h3>
-                    <p class="section-text">Gain the essential skills, certification, and real-world experience to launch your career in digital marketing.</p>
-                    <a href="#" class="btn-teal">View Full Program</a>
+    <div class="modal-overlay" id="program-modal">
+        <div class="modal-container modal-large">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-section modal-hero">
+                <div class="modal-hero-content">
+                    <span class="eyebrow">FOCUSED ON PRACTICAL SKILLS</span>
+                    <h2 class="program-title"></h2> <p class="program-desc"></p>  <a href="#" class="btn-teal">Enroll Now</a>
                 </div>
-
-                <div class="highlights-icons">
-                    <div class="icon-box">
-                        <i class="ph ph-globe"></i>
-                        <h4>International Diploma</h4>
-                        <p>Earn a CPD-certified diploma recognized across Europe and beyond.</p>
+                <div class="modal-hero-image">
+                    <img src="" alt="Program Image"> </div>
+            </div>
+            <div class="modal-section bg-gray text-center">
+                <h3 class="section-heading">Program Overview</h3>
+                <p class="section-text-max"></p> </div>
+            <div class="modal-section">
+                <div class="highlights-grid">
+                    <div class="highlights-info">
+                        <h3 class="section-heading">Program Highlights</h3>
+                        <p class="section-text">Gain the essential skills, certification, and real-world experience to launch your career.</p>
+                        <a href="#" class="btn-teal">View Full Program</a>
                     </div>
-                    <div class="icon-box">
-                        <i class="ph ph-clock"></i>
-                        <h4>Flexible Duration</h4>
-                        <p>Complete the program in 4-5 months with interactive online classes.</p>
-                    </div>
-                    <div class="icon-box">
-                        <i class="ph ph-briefcase"></i>
-                        <h4>Real Projects</h4>
-                        <p>Work on campaigns with local and international companies.</p>
-                    </div>
-                    <div class="icon-box">
-                        <i class="ph ph-rocket-launch"></i>
-                        <h4>Career Pathway</h4>
-                        <p>Top students secure paid internships with opportunities for full-time roles.</p>
+                    <div class="highlights-icons">
+                        <div class="icon-box"><i class="ph ph-globe"></i><h4>International Diploma</h4><p>Earn a CPD-certified diploma.</p></div>
+                        <div class="icon-box"><i class="ph ph-clock"></i><h4>Flexible Duration</h4><p>Complete in 4-5 months.</p></div>
+                        <div class="icon-box"><i class="ph ph-briefcase"></i><h4>Real Projects</h4><p>Work on live campaigns.</p></div>
+                        <div class="icon-box"><i class="ph ph-rocket-launch"></i><h4>Career Pathway</h4><p>Secure paid internships.</p></div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="modal-section bg-gray">
-            <div class="pricing-header">
-                <span class="badge">PRICING</span>
-                <h3 class="section-heading">Invest in Your Future</h3>
-                <p>One clear price, with international certification and career opportunities included.</p>
-            </div>
-
-            <div class="pricing-cards">
-                <div class="price-card white-card">
-                    <h4 class="price-title">November Enrollment Now Open</h4>
-                    <p class="sub-text">Includes EU CPD International Certificate</p>
-                    
-                    <ul class="price-list-simple">
-                        <li>Only 2 spots left</li>
-                        <li>Pay in up to 8 installments</li>
-                    </ul>
-
-                    <a href="#" class="btn-teal full-width">Enroll Now</a>
+            <div class="modal-section bg-gray">
+                <div class="pricing-header">
+                    <span class="badge">PRICING</span>
+                    <h3 class="section-heading">Invest in Your Future</h3>
+                    <p>One clear price, with international certification included.</p>
                 </div>
-
-                <div class="price-card teal-card">
-                    <div class="price-content">
-                        <h4 class="price-title-white">Program Price</h4>
-                        <p class="price-desc-white">Full program cost with flexible payment options available.</p>
-                        <h2 class="price-amount">1,599€ + VAT</h2>
-                    </div>
-                    <div class="price-features">
-                        <span>FEATURES</span>
-                        <ul>
-                            <li>✔ EU CPD International Certificate</li>
-                            <li>✔ Expert mentorship</li>
-                            <li>✔ Practical projects</li>
-                            <li>✔ Guaranteed internship</li>
-                            <li>✔ Flexible payments</li>
+                <div class="pricing-cards">
+                    <div class="price-card white-card">
+                        <h4 class="price-title">Enrollment Now Open</h4>
+                        <p class="sub-text">Includes EU CPD International Certificate</p>
+                        <ul class="price-list-simple">
+                            <li class="js-spots">Only 2 spots left</li> <li>Pay in up to 8 installments</li>
                         </ul>
+                        <a href="#" class="btn-teal full-width">Enroll Now</a>
+                    </div>
+                    <div class="price-card teal-card">
+                        <div class="price-content">
+                            <h4 class="price-title-white">Program Price</h4>
+                            <p class="price-desc-white">Full program cost with flexible payment options.</p>
+                            <h2 class="price-amount"></h2> </div>
+                        <div class="price-features">
+                            <span>FEATURES</span>
+                            <ul>
+                                <li>✔ EU CPD International Certificate</li>
+                                <li>✔ Expert mentorship</li>
+                                <li>✔ Practical projects</li>
+                                <li>✔ Guaranteed internship</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="modal-section text-center pb-large">
-            <p class="cta-text">Schedule a free consultation with our program coordinator and discover if this academy is the right fit for you.</p>
-            <div class="modal-buttons">
-                <a href="#" class="btn-teal">Schedule</a>
-                <a href="#" class="btn-teal">Explore Other Programs</a>
+            <div class="modal-section text-center pb-large">
+                <p class="cta-text">Schedule a free consultation with our program coordinator.</p>
+                <div class="modal-buttons">
+                    <a href="#" class="btn-teal">Schedule</a>
+                    <a href="#" class="btn-teal">Explore Other Programs</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <script src="main.js"></script>
 </body>
 </html>
