@@ -86,38 +86,67 @@ document.addEventListener("DOMContentLoaded", () => {
   const tNext = document.getElementById("testimonialNext");
   const tPrev = document.getElementById("testimonialPrev");
   let tIndex = 0;
+  let tInterval = null;
 
   if (tTrack) {
-    function updateTestimonials() {
-      const slides = document.querySelectorAll(".testimonial-slide");
+    const slides = document.querySelectorAll(".testimonial-slide");
+    const totalSlides = slides.length;
+
+    function updateSliderPosition() {
       tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
+    }
 
-      if (tPrev) {
-        tPrev.disabled = tIndex === 0;
-        tPrev.style.opacity = tIndex === 0 ? "0.5" : "1";
-      }
-      if (tNext) {
-        tNext.disabled = tIndex === slides.length - 1;
-        tNext.style.opacity = tIndex === slides.length - 1 ? "0.5" : "1";
+    function nextSlide() {
+      tIndex = (tIndex + 1) % totalSlides;
+      updateSliderPosition();
+    }
+
+    function prevSlide() {
+      tIndex = (tIndex - 1 + totalSlides) % totalSlides;
+      updateSliderPosition();
+    }
+
+    function manageSliderMode() {
+      const isMobile = window.innerWidth <= 992;
+
+      if (isMobile) {
+        if (!tInterval) {
+          console.log("Mobile Mode: Starting Auto-Play");
+          tInterval = setInterval(nextSlide, 10000); // 10 seconds
+        }
+      } else {
+        if (tInterval) {
+          console.log("Desktop Mode: Stopping Auto-Play");
+          clearInterval(tInterval);
+          tInterval = null;
+        }
       }
     }
 
-    if (tNext && tPrev) {
+    if (tNext) {
       tNext.addEventListener("click", () => {
-        const slides = document.querySelectorAll(".testimonial-slide");
-        if (tIndex < slides.length - 1) {
-          tIndex++;
-          updateTestimonials();
+        nextSlide();
+
+        if (tInterval) {
+          clearInterval(tInterval);
+          tInterval = setInterval(nextSlide, 10000);
         }
       });
-      tPrev.addEventListener("click", () => {
-        if (tIndex > 0) {
-          tIndex--;
-          updateTestimonials();
-        }
-      });
-      updateTestimonials();
     }
+
+    if (tPrev) {
+      tPrev.addEventListener("click", () => {
+        prevSlide();
+        if (tInterval) {
+          clearInterval(tInterval);
+          tInterval = setInterval(nextSlide, 10000);
+        }
+      });
+    }
+
+    window.addEventListener("resize", manageSliderMode);
+
+    manageSliderMode();
   }
 
   // ==========================================
