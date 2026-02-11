@@ -16,7 +16,7 @@
   text-decoration: none;
   transition: all 0.3s ease;
   text-align: center;
-  border: 1px solid transparent; 
+  border: 1px solid transparent;
 
   
   &.btn-primary {
@@ -247,6 +247,26 @@ header {
   }
 }
 
+.slider-arrow {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 10;
+
+      img {
+        width: 30px;
+      }
+
+      &:disabled {
+        opacity: 0.2;
+      }
+
+      @include media-down(m) {
+        display: none !important;
+      }
+    }
+
 #home {
   .hero-container {
     @include flexbox($alignItems: center, $justifyContent: center);
@@ -373,7 +393,7 @@ header {
       }
     }
 
-    // UPDATED: Added margins/width for button in form context
+    
     .btn {
       margin-top: 18px;
 
@@ -486,26 +506,6 @@ header {
       .btn {
         margin-top: auto;
         margin-bottom: 30px;
-      }
-    }
-
-    .slider-arrow {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 10;
-
-      img {
-        width: 30px;
-      }
-
-      &:disabled {
-        opacity: 0.2;
-      }
-
-      @include media-down(m) {
-        display: none !important;
       }
     }
   }
