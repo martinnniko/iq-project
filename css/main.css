@@ -50,6 +50,38 @@ a:visited {
   text-decoration: none;
 }
 
+.btn {
+  display: inline-block;
+  padding: 11px 45.5px;
+  font-family: "Domine";
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 1px solid transparent;
+}
+.btn.btn-primary {
+  background-color: #62A1A4;
+  color: #ffffff;
+}
+.btn.btn-primary:hover {
+  background-color: #ffffff;
+  color: #62A1A4;
+  border-color: #62A1A4;
+}
+.btn.btn-secondary {
+  background-color: #ffffff;
+  color: #62A1A4;
+  border-color: #62A1A4;
+}
+.btn.btn-secondary:hover {
+  background-color: #62A1A4;
+  color: #ffffff;
+}
+
 header {
   background-color: #ffffff;
   border-bottom: 3px solid #089D93;
@@ -296,23 +328,8 @@ header span:hover::after {
   margin-bottom: 25px;
   max-width: 600px;
 }
-#home .btn-enroll {
-  display: inline-block;
-  background-color: #62A1A4;
-  color: #ffffff;
-  padding: 11px 45.5px;
-  font-family: "Domine";
-  font-weight: 400;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background 0.3s ease;
+#home .hero-content .btn {
   margin-top: 18px;
-  border: 1px solid transparent;
-}
-#home .btn-enroll:hover {
-  background-color: #ffffff;
-  color: #62A1A4;
-  border: 1px solid;
 }
 #home .newsletter {
   background-color: #F8F8F8;
@@ -382,30 +399,14 @@ header span:hover::after {
 #home .subscribe-form .subscribe-input::placeholder {
   color: #089D93;
 }
-#home .subscribe-form .btn-subscribe {
-  display: inline-block;
-  background-color: #62A1A4;
-  color: #ffffff;
-  padding: 11px 45.5px;
-  font-family: "Domine";
-  font-weight: 400;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background 0.3s ease;
+#home .subscribe-form .btn {
   margin-top: 18px;
-  cursor: pointer;
-  border: 1px solid transparent;
 }
 @media (max-width: 559.98px) {
-  #home .subscribe-form .btn-subscribe {
+  #home .subscribe-form .btn {
     width: 100%;
     max-width: 350px;
   }
-}
-#home .subscribe-form .btn-subscribe:hover {
-  background-color: #ffffff;
-  color: #62A1A4;
-  border: 1px solid;
 }
 #home .programs-section {
   text-align: center;
@@ -502,25 +503,9 @@ header span:hover::after {
   margin-bottom: 20px;
   padding: 0 15px;
 }
-#home .programs-section .program-card .btn-learn {
-  display: inline-block;
-  background-color: #62A1A4;
-  color: #ffffff;
-  padding: 11px 45.5px;
-  font-family: "Domine";
-  font-weight: 400;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background 0.3s ease;
+#home .programs-section .program-card .btn {
   margin-top: auto;
   margin-bottom: 30px;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-#home .programs-section .program-card .btn-learn:hover {
-  background-color: #ffffff;
-  color: #62A1A4;
-  border: 1px solid;
 }
 #home .programs-section .slider-arrow {
   background: none;
@@ -710,24 +695,8 @@ header span:hover::after {
   margin-bottom: 35px;
   max-width: 1000px;
 }
-#home .journey-start .journey-content .btn-enroll {
-  display: inline-block;
-  background-color: #62A1A4;
-  color: #ffffff;
-  padding: 11px 45.5px;
-  font-family: "Domine";
-  font-weight: 400;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background 0.3s ease;
+#home .journey-start .journey-content .btn {
   margin-top: 18px;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-#home .journey-start .journey-content .btn-enroll:hover {
-  background-color: #ffffff;
-  color: #62A1A4;
-  border: 1px solid;
 }
 #home .journey-start .journey-visual {
   flex: 1;
@@ -880,30 +849,6 @@ header span:hover::after {
     flex-direction: column;
     align-items: center;
   }
-}
-#programs .programs-hero .hero-buttons a {
-  padding: 12px 40px;
-  font-family: "Domine";
-  border-radius: 4px;
-  text-decoration: none;
-}
-#programs .programs-hero .hero-buttons .btn-enroll {
-  background-color: #62A1A4;
-  color: #ffffff;
-  border: 1px solid #62A1A4;
-}
-#programs .programs-hero .hero-buttons .btn-enroll:hover {
-  background-color: #ffffff;
-  color: #089D93;
-}
-#programs .programs-hero .hero-buttons .btn-instructors {
-  background-color: #ffffff;
-  color: #62A1A4;
-  border: 1px solid #62A1A4;
-}
-#programs .programs-hero .hero-buttons .btn-instructors:hover {
-  background-color: #62A1A4;
-  color: white;
 }
 #programs .programs-grid-section {
   padding-top: 60px;

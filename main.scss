@@ -2,12 +2,53 @@
 @import "mixins";
 @import "reset";
 
-// --- HEADER ---
+
+//  btns
+
+.btn {
+  display: inline-block;
+  padding: 11px 45.5px;
+  font-family: $font-Domine;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 1px solid transparent; // Base border for layout stability
+
+  
+  &.btn-primary {
+    background-color: $color-light-cyan;
+    color: $color-white;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-light-cyan;
+      border-color: $color-light-cyan;
+    }
+  }
+
+  
+  &.btn-secondary {
+    background-color: $color-white;
+    color: $color-light-cyan;
+    border-color: $color-light-cyan;
+
+    &:hover {
+      background-color: $color-light-cyan;
+      color: $color-white;
+    }
+  }
+}
+
+// header
 header {
   background-color: $color-white;
   border-bottom: 3px solid $color-dark-cyan;
   height: 100px;
-  position: relative; // Context for absolute items
+  position: relative;
   z-index: 1000;
   @include flexbox($alignItems: center, $justifyContent: center);
 
@@ -18,15 +59,13 @@ header {
     @include flexbox($alignItems: center, $justifyContent: space-between);
   }
 
-  // --- BURGER BUTTON (FIXED POSITION) ---
+  // burger
   .burger-btn {
-    display: none; // Hidden on desktop
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-
-    // ABSOLUTE POSITIONING FIX
     position: absolute;
     right: 20px;
     top: 50%;
@@ -61,7 +100,6 @@ header {
       }
     }
 
-    // Active State (X shape)
     &.active .burger-icon {
       background-color: transparent;
 
@@ -77,7 +115,6 @@ header {
     }
   }
 
-  
   .nav-left,
   .nav-right {
     @include flexbox($alignItems: center);
@@ -130,7 +167,7 @@ header {
     height: 80px;
 
     .nav {
-      justify-content: center; // Center logo
+      justify-content: center;
 
       #logo {
         margin: 0;
@@ -145,7 +182,6 @@ header {
         display: block;
       }
 
-      
       .nav-left,
       .nav-right {
         position: fixed;
@@ -164,7 +200,6 @@ header {
         z-index: 1001;
         top: 80px;
 
-        
         .nav-item {
           padding: 15px 0;
           width: 100%;
@@ -178,7 +213,6 @@ header {
       }
     }
 
-  
     &.nav-open {
 
       .nav-left,
@@ -189,7 +223,6 @@ header {
         position: fixed;
       }
 
-      // Stack logic
       .nav-left {
         top: 80px;
       }
@@ -275,25 +308,10 @@ header {
       margin-bottom: 25px;
       max-width: 600px;
     }
-  }
 
-  .btn-enroll {
-    display: inline-block;
-    background-color: $color-light-cyan;
-    color: $color-white;
-    padding: 11px 45.5px;
-    font-family: $font-Domine;
-    font-weight: 400;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: background 0.3s ease;
-    margin-top: 18px;
-    border: 1px solid transparent;
-
-    &:hover {
-      background-color: $color-white;
-      color: $color-light-cyan;
-      border: 1px solid;
+    
+    .btn {
+      margin-top: 18px;
     }
   }
 
@@ -355,145 +373,142 @@ header {
       }
     }
 
-    .btn-subscribe {
-      display: inline-block;
-      background-color: $color-light-cyan;
-      color: $color-white;
-      padding: 11px 45.5px;
-      font-family: $font-Domine;
-      font-weight: 400;
-      border-radius: 4px;
-      font-size: 14px;
-      transition: background 0.3s ease;
+    // UPDATED: Added margins/width for button in form context
+    .btn {
       margin-top: 18px;
-      cursor: pointer;
-      border: 1px solid transparent;
 
       @include media-down(s) {
         width: 100%;
         max-width: 350px;
-      }
-
-      &:hover {
-        background-color: $color-white;
-        color: $color-light-cyan;
-        border: 1px solid;
       }
     }
   }
 
   // PROGRAMS SECTION
   .programs-section {
-  text-align: center;
-  padding: 40px 0;
-  overflow: hidden;
-
-  .section-title { font-size: 36px; font-family: $font-PlayfairDisplay; margin-bottom: 40px; }
-  .section-subtitle { font-size: 24px; font-family: $font-SourceSansProR; margin-bottom: 30px; }
-
-  .slider-controls-container {
-    @include flexbox($alignItems: center, $justifyContent: center);
-    position: relative;
-    max-width: 1300px;
-    margin: 0 auto;
-    gap: 40px;
-  }
-
-  
-  .programs-wrapper {
-    overflow: hidden; 
-    width: 100%;
-    max-width: 1110px;
-    
-    // --- centered scroll ---
-    @include media-down(m) {
-        overflow-x: auto; 
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory; 
-        
-        
-        padding: 0 10%; 
-        
-        
-        &::-webkit-scrollbar { display: none; }
-        scrollbar-width: none;
-    }
-  }
-
-  
-  .programs-container {
-    display: flex;
-    gap: 60px;
-    transition: transform 0.5s ease-in-out; 
-    width: max-content;
-
-    @include media-down(m) {
-        gap: 20px; 
-        transform: none !important;  
-        width: auto;
-    }
-  }
-
-  // cards 
-  .program-card {
-    flex: 0 0 330px;
-    background-color: $color-white;
-    border-radius: 4px;
+    text-align: center;
+    padding: 40px 0;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 580px;
-    
-    // --- mobile cards ---
-    @include media-down(m) {
-        // card shows a bit of the other card 
-        flex: 0 0 80%; 
-        max-width: 80%;
-        
-        min-height: auto; 
-        scroll-snap-align: center; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+
+    .section-title {
+      font-size: 36px;
+      font-family: $font-PlayfairDisplay;
+      margin-bottom: 40px;
     }
 
-    .card-image img { width: 100%; height: 330px; object-fit: cover; }
-    .card-title { font-size: 24px; margin: 15px 0; font-family: $font-SourceSansProR; padding: 0 10px; }
-    .card-text { font-size: 18px; color: $color-black; font-family: $font-SourceSansProL; margin-bottom: 20px; padding: 0 15px; }
-    
-    .btn-learn {
-      display: inline-block;
-      background-color: $color-light-cyan;
-      color: $color-white;
-      padding: 11px 45.5px;
-      font-family: $font-Domine;
-      font-weight: 400;
-      border-radius: 4px;
-      font-size: 14px;
-      transition: background 0.3s ease;
-      margin-top: auto;
+    .section-subtitle {
+      font-size: 24px;
+      font-family: $font-SourceSansProR;
       margin-bottom: 30px;
+    }
+
+    .slider-controls-container {
+      @include flexbox($alignItems: center, $justifyContent: center);
+      position: relative;
+      max-width: 1300px;
+      margin: 0 auto;
+      gap: 40px;
+    }
+
+    .programs-wrapper {
+      overflow: hidden;
+      width: 100%;
+      max-width: 1110px;
+
+      @include media-down(m) {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        padding: 0 10%;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        scrollbar-width: none;
+      }
+    }
+
+    .programs-container {
+      display: flex;
+      gap: 60px;
+      transition: transform 0.5s ease-in-out;
+      width: max-content;
+
+      @include media-down(m) {
+        gap: 20px;
+        transform: none !important;
+        width: auto;
+      }
+    }
+
+    // cards 
+    .program-card {
+      flex: 0 0 330px;
+      background-color: $color-white;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 580px;
+
+      @include media-down(m) {
+        flex: 0 0 80%;
+        max-width: 80%;
+        min-height: auto;
+        scroll-snap-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-image img {
+        width: 100%;
+        height: 330px;
+        object-fit: cover;
+      }
+
+      .card-title {
+        font-size: 24px;
+        margin: 15px 0;
+        font-family: $font-SourceSansProR;
+        padding: 0 10px;
+      }
+
+      .card-text {
+        font-size: 18px;
+        color: $color-black;
+        font-family: $font-SourceSansProL;
+        margin-bottom: 20px;
+        padding: 0 15px;
+      }
+
+     
+      .btn {
+        margin-top: auto;
+        margin-bottom: 30px;
+      }
+    }
+
+    .slider-arrow {
+      background: none;
+      border: none;
       cursor: pointer;
-      border: 1px solid transparent;
+      padding: 10px;
+      z-index: 10;
 
-      &:hover { background-color: $color-white; color: $color-light-cyan; border: 1px solid; }
-    }
-  }
+      img {
+        width: 30px;
+      }
 
-  // 4. sliders )
-  .slider-arrow {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 10;
-    img { width: 30px; }
-    &:disabled { opacity: 0.2; }
+      &:disabled {
+        opacity: 0.2;
+      }
 
-    @include media-down(m) {
+      @include media-down(m) {
         display: none !important;
+      }
     }
   }
-}
 
   // testimonial section
   .testimonial-section {
@@ -532,7 +547,6 @@ header {
     padding: 0 50px;
     @include flexbox($direction: column, $alignItems: center);
 
-    
     @include media-down(s) {
       padding: 0 10px;
     }
@@ -628,8 +642,6 @@ header {
     100% {
       transform: translateX(-50%);
     }
-
-    
   }
 
   // JOURNEY
@@ -675,25 +687,9 @@ header {
         max-width: 1000px;
       }
 
-      .btn-enroll {
-        display: inline-block;
-        background-color: $color-light-cyan;
-        color: $color-white;
-        padding: 11px 45.5px;
-        font-family: $font-Domine;
-        font-weight: 400;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: background 0.3s ease;
-        margin-top: 18px;
-        cursor: pointer;
-        border: 1px solid transparent;
 
-        &:hover {
-          background-color: $color-white;
-          color: $color-light-cyan;
-          border: 1px solid;
-        }
+      .btn {
+        margin-top: 18px;
       }
     }
 
@@ -852,6 +848,7 @@ header {
       margin-bottom: 45px;
     }
 
+
     .hero-buttons {
       display: flex;
       justify-content: center;
@@ -860,35 +857,6 @@ header {
       @include media-down(s) {
         flex-direction: column;
         align-items: center;
-      }
-
-      a {
-        padding: 12px 40px;
-        font-family: $font-Domine;
-        border-radius: 4px;
-        text-decoration: none;
-      }
-
-      .btn-enroll {
-        background-color: $color-light-cyan;
-        color: $color-white;
-        border: 1px solid $color-light-cyan;
-
-        &:hover {
-          background-color: $color-white;
-          color: $color-dark-cyan;
-        }
-      }
-
-      .btn-instructors {
-        background-color:$color-white;
-        color: $color-light-cyan;
-        border: 1px solid $color-light-cyan;
-
-        &:hover {
-          background-color: $color-light-cyan;
-          color: white;
-        }
       }
     }
   }
@@ -1109,7 +1077,7 @@ header {
   }
 }
 
-// modal style
+// modal style (kept seperate)
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1157,11 +1125,13 @@ header {
     &:hover {
       color: $color-black;
     }
+
     @include media-down(m) {
-    top: 0px;    
-    right: 10px;  
+      top: 0px;
+      right: 10px;
+    }
   }
-  }
+
 
   .btn-teal {
     display: inline-block;
