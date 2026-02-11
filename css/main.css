@@ -268,6 +268,25 @@ header span:hover::after {
   }
 }
 
+.slider-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+.slider-arrow img {
+  width: 30px;
+}
+.slider-arrow:disabled {
+  opacity: 0.2;
+}
+@media (max-width: 767.98px) {
+  .slider-arrow {
+    display: none !important;
+  }
+}
+
 #home .hero-container {
   display: flex;
   flex-direction: row;
@@ -506,24 +525,6 @@ header span:hover::after {
 #home .programs-section .program-card .btn {
   margin-top: auto;
   margin-bottom: 30px;
-}
-#home .programs-section .slider-arrow {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 10;
-}
-#home .programs-section .slider-arrow img {
-  width: 30px;
-}
-#home .programs-section .slider-arrow:disabled {
-  opacity: 0.2;
-}
-@media (max-width: 767.98px) {
-  #home .programs-section .slider-arrow {
-    display: none !important;
-  }
 }
 #home .testimonial-section {
   padding: 80px 0;
